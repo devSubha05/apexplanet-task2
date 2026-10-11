@@ -1,4 +1,4 @@
-# Nook: Responsive Login & Registration UI
+# User-Pulse: Responsive Login & Registration UI
 
 Internship Task 2: Interactive UI & Frontend Development.
 

@@ -29,22 +29,87 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .site-footer{background:var(--ink);color:#a9c2b3}
 .site-footer a{color:#cfe0d5;text-decoration:none}.site-footer a:hover{color:var(--saffron)}
 
-/* Home */
-.hero {
-  background: linear-gradient(-45deg, var(--sage), #ffecf2, #e0f7fa, var(--paper));
+/* Merged Hero & Features Section */
+.hero-features-merged {
+  background: linear-gradient(135deg, #dce8df 0%, #f4f9f6 25%, #fdf7eb 50%, #d8ebd0 75%, #e8f2ec 100%);
   background-size: 300% 300%;
-  animation: heroGradientBg 12s ease infinite;
-  padding: 5rem 0;
+  animation: mergedGradientFlow 14s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(47, 107, 79, 0.08);
 }
-@keyframes heroGradientBg {
+@keyframes mergedGradientFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Floating Ambient Orbs inside Merged Section */
+.merged-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  animation: floatMergedOrb 18s infinite alternate ease-in-out;
+}
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(242, 177, 52, 0.4) 0%, rgba(242, 177, 52, 0) 70%);
+  top: -80px;
+  right: 5%;
+}
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(47, 107, 79, 0.3) 0%, rgba(47, 107, 79, 0) 70%);
+  top: 35%;
+  left: -120px;
+  animation-delay: -6s;
+  animation-duration: 22s;
+}
+.orb-3 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.28) 0%, rgba(0, 229, 255, 0) 70%);
+  bottom: -60px;
+  right: 15%;
+  animation-delay: -12s;
+  animation-duration: 20s;
+}
+@keyframes floatMergedOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -45px) scale(1.15); }
+  100% { transform: translate(-45px, 60px) scale(0.9); }
+}
+
+.hero {
+  background: transparent;
+  padding: 5rem 0 2.5rem;
+}
 .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800}
-.feature-card{border:1px solid var(--sage);background:#fff;transition:transform .25s,box-shadow .25s}
-.feature-card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(18,38,31,.12)}
-.feature-card i{font-size:2rem;color:var(--moss)}
+
+/* Feature cards in merged section */
+.feature-card {
+  border-radius: 1.25rem;
+  transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .35s ease, border-color .35s ease;
+  backdrop-filter: blur(8px);
+}
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 36px rgba(18, 38, 31, .14);
+}
+.feature-card .feature-icon i {
+  font-size: 2.2rem;
+  color: var(--moss);
+  display: inline-block;
+  transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.feature-card:hover .feature-icon i {
+  transform: scale(1.2) rotate(6deg);
+}
 .carousel-item{min-height:220px;background:var(--moss);color:#fff;border-radius:1rem;padding:3rem 2rem}
 
 /* Auth pages */
@@ -147,9 +212,13 @@ body.darkest .modal-content {
   width: 100px;
   height: 100px;
   transform-style: preserve-3d;
-  animation: rotateCube 12s infinite linear;
+  animation: rotateCube 12s infinite linear, floatCube 6s ease-in-out infinite alternate;
   z-index: 0;
   opacity: 0.6;
+}
+@keyframes floatCube {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-24px); }
 }
 .hero-cube-face {
   position: absolute;
@@ -222,14 +291,14 @@ body.darkest .modal-content {
 
 /* Card Colors */
 .card-color-1 {
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  border: 1px solid #a5d6a7;
+  background: linear-gradient(135deg, rgba(232, 245, 233, 0.9) 0%, rgba(200, 230, 201, 0.95) 100%);
+  border: 1px solid rgba(165, 214, 167, 0.75);
 }
 .card-color-2 {
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  border: 1px solid #ffcc80;
+  background: linear-gradient(135deg, rgba(255, 243, 224, 0.9) 0%, rgba(255, 224, 178, 0.95) 100%);
+  border: 1px solid rgba(255, 204, 128, 0.75);
 }
 .card-color-3 {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border: 1px solid #90caf9;
+  background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(187, 222, 251, 0.95) 100%);
+  border: 1px solid rgba(144, 202, 249, 0.75);
 }
