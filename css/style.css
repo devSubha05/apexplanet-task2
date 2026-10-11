@@ -30,7 +30,17 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .site-footer a{color:#cfe0d5;text-decoration:none}.site-footer a:hover{color:var(--saffron)}
 
 /* Home */
-.hero{background:linear-gradient(160deg,var(--sage),var(--paper) 70%);padding:4rem 0}
+.hero {
+  background: linear-gradient(-45deg, var(--sage), #ffecf2, #e0f7fa, var(--paper));
+  background-size: 300% 300%;
+  animation: heroGradientBg 12s ease infinite;
+  padding: 5rem 0;
+}
+@keyframes heroGradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800}
 .feature-card{border:1px solid var(--sage);background:#fff;transition:transform .25s,box-shadow .25s}
 .feature-card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(18,38,31,.12)}
