@@ -7,7 +7,7 @@
   const navbar = `
   <nav class="navbar navbar-expand-md site-nav navbar-dark sticky-top">
     <div class="container">
-      <a class="brand" href="index.html">Nook<span>.</span></a>
+      <a class="brand" href="index.html">UserPulse<span>.</span></a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle menu">
         <span class="navbar-toggler-icon"></span>
       </button>
