@@ -24,9 +24,44 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .site-nav .nav-link::after{content:"";position:absolute;left:.5rem;right:.5rem;bottom:2px;height:2px;
   background:var(--saffron);transform:scaleX(0);transition:transform .25s}
 .site-nav .nav-link:hover::after,.site-nav .nav-link.active::after{transform:scaleX(1)}
-.site-nav .nav-link:hover,.site-nav .nav-link.active{color:#fff}
-.brand{color:#fff;font-weight:800;font-size:1.4rem;text-decoration:none}
-.brand span{color:var(--saffron)}
+.brand {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.brand span {
+  color: var(--saffron);
+  display: inline-block;
+  margin-left: 1px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, filter 0.35s ease;
+}
+
+/* Stylish Header Logo Hover Effect */
+.brand:hover,
+.brand:focus-visible {
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px) scale(1.03);
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.45), 0 0 24px rgba(242, 177, 52, 0.35);
+  letter-spacing: 0.01em;
+}
+
+.brand:hover span,
+.brand:focus-visible span {
+  color: #ffd166;
+  transform: translateY(-3px) scale(1.4) rotate(12deg);
+  filter: drop-shadow(0 0 10px rgba(242, 177, 52, 0.9)) drop-shadow(0 0 16px rgba(242, 177, 52, 0.6));
+}
+
+.brand:active {
+  transform: translateY(0) scale(0.98);
+}
 .site-footer{background:var(--ink);color:#a9c2b3}
 .site-footer a{color:#cfe0d5;text-decoration:none}.site-footer a:hover{color:var(--saffron)}
 
