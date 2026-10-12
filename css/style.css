@@ -180,6 +180,7 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .blob{position:absolute;border-radius:50%;opacity:.25;animation:float 9s ease-in-out infinite}
 .blob.b1{width:260px;height:260px;background:var(--saffron);top:-60px;right:-60px}
 .blob.b2{width:180px;height:180px;background:var(--sage);bottom:-40px;left:-40px;animation-delay:-4s}
+.blob.b3{width:140px;height:140px;background:#00e5ff;top:50%;left:60%;opacity:0.18;animation-delay:-7s}
 @keyframes float{50%{transform:translateY(24px) scale(1.06)}}
 .auth-card{max-width:440px;width:100%;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -191,6 +192,208 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .strength{height:6px;background:var(--sage);border-radius:3px;overflow:hidden}
 .strength>div{height:100%;width:0;transition:width .3s,background .3s}
 .check-msg{font-size:.85rem;min-height:1.2rem}
+
+/* ===== Login Page Background & Animations ===== */
+.login-page {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(52, 211, 153, 0.85) 0%, transparent 30%),
+    radial-gradient(circle at 90% 15%, rgba(251, 191, 36, 0.8) 0%, transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.8) 0%, transparent 35%),
+    radial-gradient(circle at 15% 85%, rgba(74, 222, 128, 0.75) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(253, 164, 175, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 40% 15%, rgba(6, 182, 212, 0.6) 0%, transparent 30%),
+    linear-gradient(135deg, #b8e5c8 0%, #d4f5df 15%, #fde68a 35%, #bae6fd 55%, #bbf7d0 75%, #c7e5d1 100%);
+  background-size: 250% 250%;
+  animation: loginGradient 14s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+.login-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(18, 38, 31, 0.05) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes loginGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Background Shapes */
+.login-bg-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: loginShapeIn 1.2s ease-out forwards, loginShapeFloat 18s ease-in-out infinite alternate;
+}
+.login-shape-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(47, 107, 79, 0.7) 0%, transparent 70%);
+  top: -80px;
+  left: -60px;
+  animation-delay: 0s, 0s;
+}
+.login-shape-2 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(242, 177, 52, 0.65) 0%, transparent 70%);
+  top: 5%;
+  right: -80px;
+  animation-delay: 0.2s, -4s;
+}
+.login-shape-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, transparent 70%);
+  bottom: -60px;
+  left: 25%;
+  animation-delay: 0.4s, -8s;
+}
+.login-shape-4 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.5) 0%, transparent 70%);
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 0.6s, -12s;
+}
+@keyframes loginShapeIn {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 0.65; transform: scale(1); }
+}
+@keyframes loginShapeFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -35px) scale(1.1); }
+  100% { transform: translate(-35px, 50px) scale(0.92); }
+}
+
+/* Floating Particles */
+.login-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: particleFadeIn 1s ease-out forwards, particleFloat 12s ease-in-out infinite alternate;
+}
+.p1 {
+  width: 8px; height: 8px;
+  background: var(--moss);
+  top: 18%; left: 72%;
+  animation-delay: 0.8s, 0s;
+}
+.p2 {
+  width: 6px; height: 6px;
+  background: var(--saffron);
+  top: 35%; left: 85%;
+  animation-delay: 1.1s, -2s;
+}
+.p3 {
+  width: 10px; height: 10px;
+  background: rgba(6, 182, 212, 0.7);
+  top: 65%; left: 78%;
+  animation-delay: 1.4s, -4s;
+}
+.p4 {
+  width: 5px; height: 5px;
+  background: var(--saffron);
+  top: 80%; left: 60%;
+  animation-delay: 1.6s, -6s;
+}
+.p5 {
+  width: 7px; height: 7px;
+  background: var(--moss);
+  top: 25%; left: 55%;
+  animation-delay: 1.9s, -3s;
+}
+.p6 {
+  width: 4px; height: 4px;
+  background: rgba(52, 211, 153, 0.8);
+  top: 50%; left: 92%;
+  animation-delay: 2.1s, -5s;
+}
+@keyframes particleFadeIn {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 0.7; transform: scale(1); }
+}
+@keyframes particleFloat {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-15px, 20px); }
+  50% { transform: translate(10px, -25px); }
+  75% { transform: translate(-20px, -10px); }
+  100% { transform: translate(15px, 15px); }
+}
+
+/* Login Form Section - Glassmorphic Background */
+.login-form-section {
+  position: relative;
+  background: rgba(251, 250, 246, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Enhanced Auth Side for Login */
+.login-page .auth-side {
+  background: linear-gradient(145deg, #1a5e3f 0%, #2F6B4F 40%, #1a4a35 100%);
+  box-shadow: 6px 0 24px rgba(18, 38, 31, 0.2);
+}
+.login-page .auth-side h2 {
+  animation: slideInLeft 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+.login-page .auth-side p {
+  animation: slideInLeft 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Auth Card Enhanced Styling */
+.login-page .auth-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(47, 107, 79, 0.1);
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  box-shadow: 0 16px 48px rgba(18, 38, 31, 0.08), 0 4px 12px rgba(18, 38, 31, 0.04);
+  animation: rise 0.6s cubic-bezier(.2,.8,.2,1) 0.2s both;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.login-page .auth-card:hover {
+  box-shadow: 0 20px 56px rgba(18, 38, 31, 0.12), 0 6px 16px rgba(18, 38, 31, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Staggered Form Element Animations */
+.login-page .auth-card h1 {
+  animation: fadeSlideUp 0.5s ease-out 0.4s both;
+}
+.login-page .auth-card > p {
+  animation: fadeSlideUp 0.5s ease-out 0.5s both;
+}
+.login-page .auth-card .mb-3:nth-child(1) {
+  animation: fadeSlideUp 0.5s ease-out 0.6s both;
+}
+.login-page .auth-card .mb-3:nth-child(2) {
+  animation: fadeSlideUp 0.5s ease-out 0.7s both;
+}
+.login-page .auth-card button[type="submit"] {
+  animation: fadeSlideUp 0.5s ease-out 0.8s both;
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Darkest Mode */
