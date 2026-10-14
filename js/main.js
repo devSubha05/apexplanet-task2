@@ -47,9 +47,9 @@ function checkAvailability(input, field) {
         input.classList.toggle('is-valid', !data.exists);
         resolve(!data.exists);
       } catch (e) {
-        msg.className = 'check-msg text-muted';
-        msg.textContent = 'Could not check right now. Run the page through a PHP server.';
-        resolve(true); // don't block the form when the server is unreachable
+        msg.className = 'check-msg';
+        msg.textContent = '';
+        resolve(true);
       }
     }, 400);
   });
