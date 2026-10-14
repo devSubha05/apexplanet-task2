@@ -87,8 +87,13 @@ if (loginForm) {
     e.preventDefault();
     const ok = [setState(email, rules.email(email.value)), setState(pass, rules.loginPass(pass.value))].every(Boolean);
     if (!ok) return fail(loginForm);
-    fakeSubmit(loginForm.querySelector('button[type=submit]'), () =>
-      new bootstrap.Modal('#successModal').show());
+    fakeSubmit(loginForm.querySelector('button[type=submit]'), () => {
+      new bootstrap.Modal('#successModal').show();
+      loginForm.reset();
+      loginForm.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+        el.classList.remove('is-valid', 'is-invalid');
+      });
+    });
   });
 }
 
