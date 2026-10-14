@@ -126,6 +126,17 @@ if (regForm) {
     f.terms.classList.toggle('is-invalid', !f.terms.checked);
     const free = ok && await checkAvailability(f.username, 'username') && await checkAvailability(f.email, 'email');
     if (!ok || !f.terms.checked || !free) return fail(f);
-    fakeSubmit(f.querySelector('button[type=submit]'), () => new bootstrap.Modal('#successModal').show());
+    fakeSubmit(f.querySelector('button[type=submit]'), () => {
+      new bootstrap.Modal('#successModal').show();
+      f.reset();
+      f.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+        el.classList.remove('is-valid', 'is-invalid');
+      });
+      if (bar) { bar.style.width = '0'; }
+      const uMsg = document.getElementById('usernameMsg');
+      const eMsg = document.getElementById('emailMsg');
+      if (uMsg) uMsg.textContent = '';
+      if (eMsg) eMsg.textContent = '';
+    });
   });
 }
