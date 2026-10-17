@@ -1,4 +1,3 @@
-/* ===== Brand palette (custom) ===== */
 :root{
   --ink:#12261F; --moss:#2F6B4F; --sage:#DCE8DF; --saffron:#F2B134; --paper:#FBFAF6;
   --bs-primary:var(--moss); --bs-primary-rgb:47,107,79;
@@ -17,7 +16,6 @@ h1,h2,h3,h4,.brand{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-
 a{color:var(--moss)} a:hover{color:var(--ink)}
 :focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
 
-/* Navbar & footer */
 .site-nav{height: 80px;}
 .site-nav{background:var(--ink)}
 .site-nav .nav-link{color:#cfe0d5;position:relative}
@@ -42,7 +40,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, filter 0.35s ease;
 }
 
-/* Stylish Header Logo Hover Effect */
 .brand:hover,
 .brand:focus-visible {
   color: #fff;
@@ -65,7 +62,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .site-footer{background:var(--ink);color:#a9c2b3}
 .site-footer a{color:#cfe0d5;text-decoration:none}.site-footer a:hover{color:var(--saffron)}
 
-/* Merged Hero & Features Section - Rich Multi-Tone Background */
 .hero-features-merged {
   background: 
     radial-gradient(circle at 12% 18%, rgba(184, 235, 204, 0.95) 0%, transparent 40%),
@@ -95,7 +91,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { background-position: 0% 50%; }
 }
 
-/* Floating Ambient Orbs inside Merged Section */
 .merged-ambient-orb {
   position: absolute;
   border-radius: 50%;
@@ -152,7 +147,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 }
 .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800}
 
-/* Feature cards in merged section */
 .feature-card {
   border-radius: 1.25rem;
   transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .35s ease, border-color .35s ease;
@@ -173,7 +167,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 }
 .carousel-item{min-height:220px;background:var(--moss);color:#fff;border-radius:1rem;padding:3rem 2rem}
 
-/* Auth pages */
 .auth-wrap{min-height:calc(100vh - 56px)}
 .auth-side{background:var(--moss);color:#fff;position:relative;overflow:hidden}
 .auth-side h2{font-size:clamp(2rem,3.4vw,3rem);font-weight:800}
@@ -193,7 +186,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 .strength>div{height:100%;width:0;transition:width .3s,background .3s}
 .check-msg{font-size:.85rem;min-height:1.2rem}
 
-/* ===== Login Page Background & Animations ===== */
 .login-page {
   background:
     radial-gradient(circle at 10% 20%, rgba(52, 211, 153, 0.85) 0%, transparent 30%),
@@ -206,7 +198,7 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   background-size: 250% 250%;
   animation: loginGradient 14s ease-in-out infinite;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .login-page::before {
   content: "";
@@ -223,7 +215,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { background-position: 0% 50%; }
 }
 
-/* Floating Background Shapes */
 .login-bg-shape {
   position: fixed;
   border-radius: 50%;
@@ -275,7 +266,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { transform: translate(-35px, 50px) scale(0.92); }
 }
 
-/* Floating Particles */
 .login-particle {
   position: fixed;
   border-radius: 50%;
@@ -332,7 +322,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { transform: translate(15px, 15px); }
 }
 
-/* Login Form Section - Glassmorphic Background */
 .login-form-section {
   position: relative;
   background: rgba(251, 250, 246, 0.55);
@@ -340,7 +329,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Enhanced Auth Side for Login */
 .login-page .auth-side {
   background: linear-gradient(145deg, #1a5e3f 0%, #2F6B4F 40%, #1a4a35 100%);
   box-shadow: 6px 0 24px rgba(18, 38, 31, 0.2);
@@ -356,7 +344,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Auth Card Enhanced Styling */
 .login-page .auth-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
@@ -373,7 +360,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   transform: translateY(-2px);
 }
 
-/* Staggered Form Element Animations */
 .login-page .auth-card h1 {
   animation: fadeSlideUp 0.5s ease-out 0.4s both;
 }
@@ -394,7 +380,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Register Page Background & Animations ===== */
 .register-page {
   background:
     radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.8) 0%, transparent 32%),
@@ -425,7 +410,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { background-position: 0% 50%; }
 }
 
-/* Register Floating Background Shapes */
 .register-bg-shape {
   position: fixed;
   border-radius: 50%;
@@ -486,7 +470,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { transform: translate(30px, 45px) scale(1.05) rotate(1deg); }
 }
 
-/* Register Floating Particles */
 .register-particle {
   position: fixed;
   border-radius: 50%;
@@ -550,7 +533,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   100% { transform: translate(-8px, -14px); }
 }
 
-/* Register Form Section - Glassmorphic */
 .register-form-section {
   position: relative;
   background: rgba(251, 250, 246, 0.5);
@@ -558,7 +540,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   -webkit-backdrop-filter: blur(14px);
 }
 
-/* Enhanced Auth Side for Register */
 .register-page .auth-side {
   background: linear-gradient(145deg, #5b21b6 0%, #7c3aed 40%, #4c1d95 100%);
   box-shadow: 6px 0 28px rgba(91, 33, 182, 0.25);
@@ -574,7 +555,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   to { opacity: 1; transform: translateX(0) rotate(0deg); }
 }
 
-/* Register Auth Card - Enhanced Glassmorphism */
 .register-page .auth-card {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(18px);
@@ -601,7 +581,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Staggered Form Element Animations - Register */
 .register-page .auth-card h1 {
   animation: regFadeUp 0.5s ease-out 0.35s both;
 }
@@ -645,7 +624,6 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Register page form focus enhancements */
 .register-page .form-control:focus {
   border-color: #7c3aed;
   box-shadow: 0 0 0 .22rem rgba(139, 92, 246, 0.18);
@@ -659,12 +637,11 @@ a{color:var(--moss)} a:hover{color:var(--ink)}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-/* Darkest Mode */
 body.darkest {
   --ink: #ffffff;
-  --moss: #00e5ff; /* Cyan accent */
+  --moss: #00e5ff;
   --sage: #111111;
-  --saffron: #ff0055; /* Pink accent */
+  --saffron: #ff0055; 
   --paper: #050505;
   background-color: var(--paper);
   color: var(--ink);
@@ -700,7 +677,6 @@ body.darkest .modal-content {
   color: #fff;
 }
 
-/* 3D Animations */
 .perspective-container {
   perspective: 1200px;
 }
@@ -731,7 +707,6 @@ body.darkest .modal-content {
   transform: translateZ(60px) scale(1.1);
 }
 
-/* 3D Floating Cube */
 .hero-cube {
   position: absolute;
   top: 15%;
@@ -767,7 +742,6 @@ body.darkest .modal-content {
   100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
 }
 
-/* Animated Background */
 .bg-animated {
   background: linear-gradient(-45deg, #cce5d4, #fbfaf6, #d2ebd8, #e5f4ea);
   background-size: 300% 300%;
@@ -806,7 +780,7 @@ body.darkest .modal-content {
 .shape-3 {
   width: 340px;
   height: 340px;
-  background: #00e5ff; /* Cyan pop */
+  background: #00e5ff;
   top: 40%;
   left: 50%;
   animation-delay: -10s;
@@ -817,7 +791,6 @@ body.darkest .modal-content {
   100% { transform: translate(-50px, 100px) scale(0.8); }
 }
 
-/* Card Colors - Converted darker with rich tones and refined contrast */
 .card-color-1 {
   background: linear-gradient(135deg, #94d4ab 0%, #5cb880 100%);
   border: 1px solid #439e67;
@@ -870,4 +843,149 @@ body.darkest .modal-content {
 .card-color-3:hover {
   box-shadow: 0 18px 36px rgba(42, 115, 184, 0.28);
 }
+
+/* ===== AJAX Availability Indicators & Demo Modal ===== */
+.ajax-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(47, 107, 79, 0.3);
+  border-top-color: var(--moss);
+  border-radius: 50%;
+  animation: ajaxSpin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+@keyframes ajaxSpin {
+  to { transform: rotate(360deg); }
+}
+
+.ajax-checking {
+  color: #6c757d;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+.ajax-result {
+  font-weight: 600;
+  animation: fadeInMsg 0.25s ease-out;
+  display: inline-flex;
+  align-items: center;
+}
+.ajax-taken {
+  color: #dc3545 !important;
+}
+.ajax-free {
+  color: #198754 !important;
+}
+@keyframes fadeInMsg {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* AJAX Demo Modal */
+.ajax-demo-modal {
+  border: 1px solid rgba(47, 107, 79, 0.2);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(18, 38, 31, 0.25);
+  background: #ffffff;
+}
+.ajax-demo-header {
+  background: linear-gradient(135deg, var(--ink) 0%, #1c3b2f 100%);
+  color: #fff;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ajax-demo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(242, 177, 52, 0.2);
+  color: var(--saffron);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.ajax-demo-body {
+  padding: 1.5rem;
+  background: #fafaf8;
+}
+.ajax-demo-footer {
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ajax-demo-hints {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chip {
+  border: 1px solid transparent;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+.chip:hover {
+  transform: translateY(-1px);
+}
+.chip-taken {
+  color: #b02a37;
+  border-color: #f5c2c7;
+  background: #f8d7da;
+}
+.chip-taken:hover {
+  background: #f1aeb5;
+}
+.chip-free {
+  color: #0f5132;
+  border-color: #badbcc;
+  background: #d1e7dd;
+}
+.chip-free:hover {
+  background: #a3cfbb;
+}
+.ajax-log-wrap {
+  border: 1px solid #dee2e6;
+  border-radius: 0.75rem;
+  background: #1e1e1e;
+  padding: 0.85rem 1rem;
+}
+.ajax-log {
+  max-height: 120px;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  color: #9cdcfe;
+  line-height: 1.5;
+}
+.ajax-log-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 2px;
+}
+.ajax-log-time {
+  color: #6a9955;
+  font-size: 0.72rem;
+}
+.ajax-log-success {
+  color: #4ec9b0;
+}
+.ajax-log-warn {
+  color: #ce9178;
+}
+
 

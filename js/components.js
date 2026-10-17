@@ -1,4 +1,3 @@
-// Reusable components: Navbar + Footer (injected into <div id="navbar"> / <div id="footer">)
 (function () {
   const page = location.pathname.split('/').pop() || 'index.html';
   const link = (href, label) =>
@@ -25,7 +24,7 @@
   const footer = `
   <footer class="site-footer py-4 mt-auto">
     <div class="container d-flex flex-column flex-md-row justify-content-between gap-2 small">
-      <span>&copy; ${new Date().getFullYear()} Nook. Built for Internship Task 2.</span>
+      <span>&copy; ${new Date().getFullYear()} UserPulse. Built for Internship Task 2.</span>
       <span class="d-flex gap-3">
         <a href="login.html">Log in</a><a href="register.html">Register</a>
         <a href="https://github.com/" aria-label="GitHub"><i class="bi bi-github"></i></a>

@@ -1,5 +1,5 @@
 <?php
-// Dummy availability check: replace the arrays with a MySQL query later.
+
 header('Content-Type: application/json');
 
 $field = $_GET['field'] ?? '';

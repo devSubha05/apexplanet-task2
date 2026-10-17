@@ -69,12 +69,60 @@
   </section>
 </div>
 </main>
-<div class="modal fade" id="demoModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-4">
-<h5>Live availability check</h5><p class="text-muted">Type a username on the register page. The browser asks a PHP file in the background and shows the answer instantly.</p>
-<a class="btn btn-brand" href="register.html">Try it</a></div></div></div>
+<div class="modal fade" id="demoModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content ajax-demo-modal p-0">
+  <div class="ajax-demo-header">
+    <div class="d-flex align-items-center gap-2">
+      <span class="ajax-demo-icon"><i class="bi bi-broadcast"></i></span>
+      <div>
+        <h5 class="mb-0 fw-bold">Live AJAX Availability Check</h5>
+        <p class="mb-0 small text-white-50">Type below — the browser queries PHP in the background, no reload needed.</p>
+      </div>
+    </div>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="ajax-demo-body">
+    <div class="row g-4">
+
+      <div class="col-12 col-sm-6">
+        <label class="form-label fw-semibold" for="demoUsername"><i class="bi bi-person me-1"></i>Username</label>
+        <input class="form-control" id="demoUsername" placeholder="e.g. admin" autocomplete="off">
+        <div class="check-msg mt-1" id="demoUsernameMsg"></div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <label class="form-label fw-semibold" for="demoEmail"><i class="bi bi-envelope me-1"></i>Email</label>
+        <input class="form-control" id="demoEmail" placeholder="e.g. test@example.com" autocomplete="off">
+        <div class="check-msg mt-1" id="demoEmailMsg"></div>
+      </div>
+    </div>
+
+    <div class="ajax-demo-hints mt-3">
+      <span class="small fw-semibold text-muted me-1">Try these:</span>
+      <button class="chip chip-taken" data-target="demoUsername" data-value="admin">admin</button>
+      <button class="chip chip-taken" data-target="demoUsername" data-value="subha">subha</button>
+      <button class="chip chip-free" data-target="demoUsername" data-value="john_doe">john_doe</button>
+      <button class="chip chip-taken" data-target="demoEmail" data-value="test@example.com">test@example.com</button>
+      <button class="chip chip-free" data-target="demoEmail" data-value="hello@gmail.com">hello@gmail.com</button>
+    </div>
+
+    <div class="ajax-log-wrap mt-4">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <i class="bi bi-terminal-fill text-muted"></i>
+        <span class="small fw-semibold text-muted text-uppercase" style="letter-spacing:.05em">Network Log</span>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-2 ms-auto" id="clearLog" style="font-size:.7rem">Clear</button>
+      </div>
+      <div class="ajax-log" id="ajaxLog"><span class="text-muted fst-italic">Waiting for a check…</span></div>
+    </div>
+  </div>
+  <div class="ajax-demo-footer">
+    <span class="small text-muted"><i class="bi bi-info-circle me-1"></i>Falls back to client-side dummy data when PHP is unavailable.</span>
+    <a class="btn btn-brand btn-sm" href="register.html">Go to Register <i class="bi bi-arrow-right"></i></a>
+  </div>
+</div></div></div>
 <div id="footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/components.js"></script>
+<script src="js/main.js"></script>
 
 </body></html>

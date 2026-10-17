@@ -1,4 +1,3 @@
-// ---------- Helpers ----------
 const rules = {
   fullname: v => v.trim().length >= 3 || 'Enter your full name (at least 3 characters).',
   username: v => /^[a-z0-9_]{3,20}$/i.test(v) || 'Use 3-20 letters, numbers or underscores.',
@@ -17,7 +16,6 @@ function setState(input, result) {
   return ok;
 }
 
-// ---------- Show / hide password ----------
 document.querySelectorAll('[data-toggle-password]').forEach(btn => {
   btn.addEventListener('click', () => {
     const input = document.getElementById(btn.dataset.togglePassword);
@@ -28,34 +26,59 @@ document.querySelectorAll('[data-toggle-password]').forEach(btn => {
   });
 });
 
-// ---------- AJAX: username / email availability (PHP) ----------
 const timers = {};
+
+const dummyTaken = {
+  username: ['admin', 'subha', 'test', 'user123'],
+  email:    ['admin@example.com', 'test@example.com'],
+};
+
+function dummyCheck(field, value) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const exists = dummyTaken[field]?.includes(value.toLowerCase()) ?? false;
+      const label  = field.charAt(0).toUpperCase() + field.slice(1);
+      resolve({ exists, message: exists ? `${label} is already taken.` : `${label} is available.` });
+    }, 300 + Math.random() * 200);  
+  });
+}
+
 function checkAvailability(input, field) {
   const msg = document.getElementById(field + 'Msg');
   clearTimeout(timers[field]);
-  if (rules[field](input.value) !== true) { msg.textContent = ''; return Promise.resolve(false); }
-  msg.className = 'check-msg text-muted';
-  msg.textContent = 'Checking…';
+
+  if (rules[field](input.value) !== true) {
+    msg.innerHTML = '';
+    msg.className = 'check-msg';
+    return Promise.resolve(false);
+  }
+
+  msg.className = 'check-msg ajax-checking';
+  msg.innerHTML = '<span class="ajax-spinner"></span> Checking…';
+
   return new Promise(resolve => {
     timers[field] = setTimeout(async () => {
+      let data;
       try {
         const res = await fetch(`php/check_user.php?field=${field}&value=${encodeURIComponent(input.value.trim())}`);
-        const data = await res.json();
-        msg.className = 'check-msg ' + (data.exists ? 'text-danger' : 'text-success');
-        msg.textContent = data.message;
-        input.classList.toggle('is-invalid', data.exists);
-        input.classList.toggle('is-valid', !data.exists);
-        resolve(!data.exists);
-      } catch (e) {
-        msg.className = 'check-msg';
-        msg.textContent = '';
-        resolve(true);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        data = await res.json();
+      } catch (_) {
+        data = await dummyCheck(field, input.value.trim());
       }
+
+      const icon = data.exists
+        ? '<i class="bi bi-x-circle-fill"></i> '
+        : '<i class="bi bi-check-circle-fill"></i> ';
+      msg.className = 'check-msg ajax-result ' + (data.exists ? 'ajax-taken' : 'ajax-free');
+      msg.innerHTML = icon + data.message;
+      input.classList.toggle('is-invalid', data.exists);
+      input.classList.toggle('is-valid', !data.exists);
+      resolve(!data.exists);
     }, 400);
   });
 }
 
-// ---------- Password strength ----------
 function strengthOf(p) {
   let s = 0;
   if (p.length >= 8) s++;
@@ -77,7 +100,6 @@ function fakeSubmit(btn, done) {
   setTimeout(() => { btn.disabled = false; btn.innerHTML = label; done(); }, 1200);
 }
 
-// ---------- Login form ----------
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
   const email = loginForm.email, pass = loginForm.password;
@@ -97,7 +119,6 @@ if (loginForm) {
   });
 }
 
-// ---------- Registration form ----------
 const regForm = document.getElementById('registerForm');
 if (regForm) {
   const f = regForm, bar = document.getElementById('strengthBar');
@@ -145,3 +166,81 @@ if (regForm) {
     });
   });
 }
+
+// ---------- Interactive AJAX Demo Modal (index.html) ----------
+const demoModal = document.getElementById('demoModal');
+if (demoModal) {
+  const dUser = document.getElementById('demoUsername');
+  const dEmail = document.getElementById('demoEmail');
+  const dUserMsg = document.getElementById('demoUsernameMsg');
+  const dEmailMsg = document.getElementById('demoEmailMsg');
+  const logEl = document.getElementById('ajaxLog');
+  const clearBtn = document.getElementById('clearLog');
+
+  function logAjax(text, type = 'info') {
+    if (!logEl) return;
+    const time = new Date().toTimeString().split(' ')[0];
+    const item = document.createElement('div');
+    item.className = 'ajax-log-entry';
+    const cls = type === 'taken' ? 'ajax-log-warn' : type === 'free' ? 'ajax-log-success' : 'text-muted';
+    item.innerHTML = `<span class="ajax-log-time">[${time}]</span> <span class="${cls}">${text}</span>`;
+    if (logEl.querySelector('.fst-italic')) logEl.innerHTML = '';
+    logEl.prepend(item);
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      logEl.innerHTML = '<span class="text-muted fst-italic">Log cleared. Waiting for requests…</span>';
+    });
+  }
+
+  async function checkDemoField(input, field, msgEl) {
+    const val = input.value.trim();
+    if (!val) {
+      msgEl.innerHTML = '';
+      input.classList.remove('is-valid', 'is-invalid');
+      return;
+    }
+    msgEl.className = 'check-msg ajax-checking';
+    msgEl.innerHTML = '<span class="ajax-spinner"></span> Checking…';
+    logAjax(`GET php/check_user.php?field=${field}&value=${val}`, 'info');
+
+    let data;
+    try {
+      const res = await fetch(`php/check_user.php?field=${field}&value=${encodeURIComponent(val)}`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      data = await res.json();
+      logAjax(`200 OK (PHP) - ${data.message}`, data.exists ? 'taken' : 'free');
+    } catch (_) {
+      data = await dummyCheck(field, val);
+      logAjax(`[Fallback Simulated] - ${data.message}`, data.exists ? 'taken' : 'free');
+    }
+
+    const icon = data.exists ? '<i class="bi bi-x-circle-fill"></i> ' : '<i class="bi bi-check-circle-fill"></i> ';
+    msgEl.className = 'check-msg ajax-result ' + (data.exists ? 'ajax-taken' : 'ajax-free');
+    msgEl.innerHTML = icon + data.message;
+    input.classList.toggle('is-invalid', data.exists);
+    input.classList.toggle('is-valid', !data.exists);
+  }
+
+  let demoTimers = {};
+  [dUser, dEmail].forEach((el, idx) => {
+    if (!el) return;
+    const field = idx === 0 ? 'username' : 'email';
+    const msg = idx === 0 ? dUserMsg : dEmailMsg;
+    el.addEventListener('input', () => {
+      clearTimeout(demoTimers[field]);
+      demoTimers[field] = setTimeout(() => checkDemoField(el, field, msg), 350);
+    });
+  });
+
+  document.querySelectorAll('.chip[data-target]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const target = document.getElementById(chip.dataset.target);
+      if (!target) return;
+      target.value = chip.dataset.value;
+      target.dispatchEvent(new Event('input'));
+    });
+  });
+}
+
